@@ -12,12 +12,20 @@ function App() {
             completed: true
         },
         {
-            id: 1,
+            id: 2,
             title: "Create-todo-app-2",
             description: "Creating",
             dateComplete: new Date("1992-08-15"),
             pinnedFiles: [null, null, null, null],
             completed: true
+        },
+        {
+            id: 3,
+            title: "Create-todo-app-2",
+            description: "Creating",
+            dateComplete: new Date("1992-08-15"),
+            pinnedFiles: [null, null, null, null],
+            completed: false
         }
     ])
     const lengthCompletedTodos = useMemo(() => {
@@ -25,9 +33,9 @@ function App() {
             if(cur.completed) {
                 return acc + 1
             }
-            return 0
+            return acc
         }, 0)
-    }, [])
+    }, [todos])
     return (
         <div className="App">
             <div className="wrapper">

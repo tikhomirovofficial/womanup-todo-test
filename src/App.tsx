@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import TodoItem, {ITodoItemProps} from "./components/TodoItem";
 
 function App() {
@@ -28,6 +28,17 @@ function App() {
             completed: false
         }
     ])
+    const changeFieldTodo = (todo_id: number, field: keyof ITodoItemProps, value: ITodoItemProps[keyof ITodoItemProps]): void => {
+        setTodos(prev => prev.map(item => {
+            if(item.id === todo_id) {
+                const changedTodo = item as any;
+                changedTodo[field] = value
+                return changedTodo
+            }
+            return item
+        }))
+    }
+
     const lengthCompletedTodos = useMemo(() => {
         return todos.reduce((acc, cur) => {
             if(cur.completed) {
@@ -36,6 +47,7 @@ function App() {
             return acc
         }, 0)
     }, [todos])
+
     return (
         <div className="App">
             <div className="wrapper">
